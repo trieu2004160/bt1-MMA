@@ -9,6 +9,8 @@
     "allowJs": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+    "ignoreDeprecations": "6.0",
     "types": [
       "react",
       "react-native"

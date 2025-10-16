@@ -5,12 +5,22 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import LoginScreen from "../screens/LoginScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 import TaskScreen from "../screens/TaskScreen";
+import HomeScreen from "../screens/HomeScreen";
+import ProfileScreen from "../screens/ProfileScreen";
+import EditProfileScreen from "../screens/EditProfileScreen";
+import SettingsScreen from "../screens/SettingsScreen";
 import { ThemeProvider } from "../context/ThemeContext";
 
 export type RootStackParamList = {
   Login: undefined;
   SignUp: undefined;
   Tasks: undefined;
+  Home: undefined;
+  Profile: undefined;
+  EditProfile:
+    | { name: string; bio: string; onSave: (name: string, bio: string) => void }
+    | undefined;
+  Settings: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -42,16 +52,18 @@ export default function RootNavigator() {
     <ThemeProvider>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName={isLoggedIn ? "Tasks" : "Login"}
+          initialRouteName={isLoggedIn ? "Home" : "Login"}
           screenOptions={{ headerShown: false }}
         >
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="SignUp" component={SignUpScreen} />
           <Stack.Screen name="Tasks" component={TaskScreen} />
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Profile" component={ProfileScreen} />
+          <Stack.Screen name="EditProfile" component={EditProfileScreen} />
+          <Stack.Screen name="Settings" component={SettingsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>
   );
 }
-
-
